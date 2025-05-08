@@ -99,7 +99,7 @@ TYPES OF SQL COMMAND
 	syntax:- create table temp(
 		cust_id int,          					{here in table new column is been created}
 		FOREIGN KEY (cust_id) references customer(id)		{here we declare with column we are making as a foreign key and in 
-		);							reference we tell the another tables name and which column is the primary 														key in other column}
+		);							reference we tell the another tables name and which column is the primary 											key in other column}
 
 
 -CONSTRAINTS 
@@ -124,9 +124,9 @@ TYPES OF SQL COMMAND
 	-It is used where to add the same type of output again and again and the person can too change when the user don't want the default output but to change
 	syntax:- create table employee(
 		id INT,
-		salary INT DEFAULT 50000);			{after assign the default constraint then also have to writ what to show i 								in default value}
+		salary INT DEFAULT 50000);			{after assign the default constraint then also have to writ what to show in default value}
 	
-	INSERT INTO employee (id) VALUES(101);		{here we're only assigning the id of the employee}
+	INSERT INTO employee (id) VALUES(101);		        {here we're only assigning the id of the employee}
 
 	5.CHANGE
 	-IT can limit the values allowed in a column
@@ -172,7 +172,7 @@ DQL(Data Query Language)
 	DISTINCT
 	-It is used to show the unique values inside the table
 	syntax:-
-		SELECT DISTINCT city FROM student;		{it will only show the values which is not repeating and the repeating 									one's for once only}
+		SELECT DISTINCT city FROM student;		{it will only show the values which is not repeating and the repeating one's for once only}
 
 
 	WHERE CLAUSE
@@ -267,7 +267,7 @@ DQL(Data Query Language)
 
 	EXAMPLE:- Count number of students in each city
 	syntax:-
-		SELECT city, COUNT(id) FROM student		{Here after SELECT we know if we want the enter tables data then we use "*" or else write the name of the column but in  		GROUP BY city;					GROUP DATA we also required to enter the function too and make sure to add the column name after writing the GROUP BY}
+		SELECT city, COUNT(id) FROM student		{Here after SELECT we know if we want the enter tables data then we use "*" or else write the name   		GROUP BY city;					of the column but in GROUP DATA we also required to enter the function too and make sure to add 								the column name after writing the GROUP BY}
 	
 
 	PRACTICE QUESTION
@@ -285,7 +285,7 @@ DQL(Data Query Language)
 		example:- Count number of students in each city where max marks cross 90
 		-->     SELECT city, count(id) FROM student
 			GROUP BY city
-			HAVING MAX(marks) > 90;			{difference btw where and having is where apply conditions in rows where 								as having apply conditions in group}
+			HAVING MAX(marks) > 90;			{difference btw where and having is where apply conditions in rows where as having apply 									conditions in group}
 
 	GENERAL ORDER FOR APPLYING DIFFERENT CLAUSES
 		
@@ -374,7 +374,7 @@ ALTER
 
 
 TRUNCATE
-- To delete table's data		{The difference between the drop and truncate is drop delete's the entire table where as truncate only delete's the data inside the table. You can syntax:-					 still use the table}
+- To delete table's data		{The difference between the drop and truncate is drop delete's the entire table where as truncate only delete's the data  syntax:-				inside the table. You can still use the table}
 	TRUNCATE TABLE table_name;
 
 
@@ -405,7 +405,7 @@ JOINS
 	
 
 		1.LEFT JOIN
-		-Returns all records from the left table, and the matched records from the right table		{Whichever data we want that it should come entirely then that table_name 														should come first}
+		-Returns all records from the left table, and the matched records from the right table		{Whichever data we want that it should come 															entirely then that table_name should come first}
 		EXAMPLE:-
 			Table 1 has id as 101, 102, 103
 			Table 2 has id as 102, 105, 103, 107
@@ -444,9 +444,8 @@ JOINS
 			FROM tableA
 			LEFT JOIN tableB
 			ON tableA.col_name = tableB.col_name;
-			UNION								{It is used to combine the result-set of two or more SELECT statements but it removes duplicates so 
-			SELECT *							we get only the unique values}
-			FROM tableA
+			UNION								{It is used to combine the result-set of two or more SELECT statements but 			SELECT *							it removes duplicates so we get only the unique values}
+			FROM tableA							
 			RIGHT JOIN tableB
 			ON tableA.col_name = tableB.col_name;
 
