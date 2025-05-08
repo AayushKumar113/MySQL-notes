@@ -99,7 +99,7 @@ TYPES OF SQL COMMAND
 	syntax:- create table temp(
 		cust_id int,          					{here in table new column is been created}
 		FOREIGN KEY (cust_id) references customer(id)		{here we declare with column we are making as a foreign key and in 
-		);							reference we tell the another tables name and which column is the primary 											key in other column}
+		);							reference we tell the another tables name and which column is the primary key in other column}
 
 
 -CONSTRAINTS 
