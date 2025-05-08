@@ -1,0 +1,527 @@
+WHAT IS SQL?
+-SQL is a programming language used to interact with relational databases. It is used to perform CRUD operations
+	CREATE	 - C
+	READ	 - R	
+	UPDATE	 - U
+	DELETE	 - D
+
+
+
+TYPES OF DATABASE:-
+	1.CHAR 
+	2.VARCHAR
+	3.BLOB
+	4.INT
+	5.TINYINT
+	6.BIGINT
+	7.FLOAT
+	8.DOUBLE
+	9.BOOLEAN
+	10.DATE
+	11.YEAR
+
+
+
+TYPES OF SQL COMMAND
+	- DDL(Data definition language)
+	create, alter, drop
+
+	-DQL(Data Query language)
+	select
+
+	-DML(Data Manipulation Language)
+	Insert, Update & Delete
+
+	-DCL(Data Control Language) 
+	Grant & Revoke permissions
+ 
+	-TCL(Transaction Control Language)
+	Start Transaction, Commit, Rollback
+
+
+
+	-for creating database 
+		create database database_name;
+		{";" it acts as a full stop in sql}
+
+	-for deleting database
+		drop database database_name;
+
+	-for using the database 
+		use database_name;
+		{it is used to tell the sql that whatever things are going to do should be that particular database}
+
+	-for creating table in database
+		create table database_name(
+		column_name1 datatype constraints,
+		column_name2 datatype constraints,
+		column_name3 datatype constraints,
+		);
+
+	-for insert the values inside the table
+		insert into table_name values(_____, __________, _______);
+
+	EXAMPLE:- Create a database to your company name XYZ
+		step 1:- create a table inside the db to store employee info(id, name, salary)
+		step 2:- Add following info in the DB:
+			1,"adam",25000
+			2,"Aayush",30000
+			3,"Piyush",40000
+		Step 3:- Select & view all your table data
+
+		---> 	create database XYZ
+		use XYZ
+		create table employee
+		(id INT primary key,         {Primary key is used to when the column should not be empty and also the id should be unique}
+	 	name VARCHAR(50), 
+		salary INT)
+		value
+		(1, "adam", 25000),
+	 	(2, "Aayush", 30000),
+	 	(3, "Piyush", 40000);
+
+		{to select and run the entire table at once then use select}
+		SELECT * FROM employee;
+		
+		{And if want to show the specific columns then}
+		SELECT column_name, column_name FROM table_name;
+
+
+
+-KEYS 
+	1. Primary key
+	- IT is a column(or set of column) in a table that uniquely identifies each row(a unique id). There is only 1 primary key & it 	should not 
+	be null
+
+	2. Foreign key
+	-A foreign key is a column(or set of column) in a table that refers to the primary key in other column. There can be multiple 	foreign
+	keys. Foreign key can have duplicates & null values.
+	syntax:- create table temp(
+		cust_id int,          					{here in table new column is been created}
+		FOREIGN KEY (cust_id) references customer(id)		{here we declare with column we are making as a foreign key and in 
+		);							reference we tell the another tables name and which column is the primary 														key in other column}
+
+
+-CONSTRAINTS 
+	SQL constraints are used to specify rules for data in a table.
+ 
+	1.NOT NULL
+	-Column cannot have a null values.
+	syntax:- create table(
+		name VARCHAR(50) NOT NULL);
+
+	2.UNIQUE
+	-All values in column are different
+	syntax:- create table(
+		id INT Unique);
+
+	3.PRIMARY KEY 
+	-Makes a column unique & not null but used only for one
+	syntax:- create table(
+		id INT PRIMARY KEY);
+
+	4.DEFAULT
+	-It is used where to add the same type of output again and again and the person can too change when the user don't want the default output but to change
+	syntax:- create table employee(
+		id INT,
+		salary INT DEFAULT 50000);			{after assign the default constraint then also have to writ what to show i 								in default value}
+	
+	INSERT INTO employee (id) VALUES(101);		{here we're only assigning the id of the employee}
+
+	5.CHANGE
+	-IT can limit the values allowed in a column
+	syntax:- create table city(
+		id INT PRIMARY KEY,
+		city VARCHAR(50),
+		age INT,
+		CONSTRAINT CHECK (age => 18)
+		);
+	
+DQL(Data Query Language)
+	- In simple terms DQL is something using which the developer ask different queries to the database. The most commonly used command in DQL is SELECT.
+	-To know more about SQL lets create a database in which it has the data of students
+
+		create database college;
+		use college;
+		create table student(
+		id INT PRIMARY KEY,
+		name VARCHAR(50),
+		marks INT NOT NULL,
+		grade VARCHAR(1),
+		city VARCHAR(50)
+		);
+
+		insert into student(
+		id, name, marks, grade, city)
+		values
+		(101, "anil", 78, "C", "Pune"),
+		(102, "aayush", 96, "A", "Mumbai"),
+		(103, "ashish", 45, "C", "Mumbai"),
+		(104, "kamlesh", 75, "B", "Luckhnow"),
+		(105, "vijay", 89, "A", "Mumbai"),
+		(106, "mandar", 75, "B", "konkan");
+	
+	{Here table is been created}
+	-If we want to know the name and grade of the student then at that moment we cant use the command "SELECT * FROM student"
+	rather we have to make a slight change is the command 
+
+	syntax:-
+		SELECT name, grade FROM student;		{it is used only when you don't want to show the entire table}
+
+
+	DISTINCT
+	-It is used to show the unique values inside the table
+	syntax:-
+		SELECT DISTINCT city FROM student;		{it will only show the values which is not repeating and the repeating 									one's for once only}
+
+
+	WHERE CLAUSE
+	-It is used in DQL when we want to apply certain conditions into the table.
+	syntax:-
+		SELECT * FORM student WHERE id < 105;		{here it will show the id and there details which are below 105}
+
+			
+	TYPES OF OPERATORS IN WHERE
+	1. ARITHMETIC OPERATORS 
+	--> +, -, *, /, %
+
+	2.COMPARISON OPERATORS
+	--> =, !=, >, <, >=, <=
+
+	3.LOGICAL OPERATORS
+	--> AND, OR, NOT, IN, BETWEEN, NOT
+
+		AND- it checks if both the conditions are true or not
+		syntax:- 
+			SELECT * FROM student WHERE marks > 80 AND grade > "C";
+
+		OR- it checks if any one of the conditions are true or not
+		syntax:-
+			SELECT * FROM student WHERE marks > 80 OR grade > "C";
+
+		BETWEEN- if want to want the output between the two values
+		syntax:-
+			SELECT * FROM student WHERE id BETWEEN 105 AND 102;
+
+		IN- matches any values in the list
+		syntax:-
+			SELECT * FROM student WHERE grade IN ("A", "D");
+
+		NOT- it finds the values opposite to the condition
+		syntax:-
+			SELECT * FROM student WHERE grade NOT IN ("A", "D");
+
+
+
+	LIMIT CLAUSE
+	-Wherever we add limit then it will apply the limit in the number of rows
+	syntax:-
+		SELECT * FROM student LIMIT 3;
+	 			{it can also be used with where clause}
+		SELECT * FROM students WHERE marks > 50 LIMIT 3;
+
+	ORDER BY CLAUSE
+	-To sort data in ascending (ASC) or descending order (DESC)
+	syntax:-
+		1.ASCENDING
+		SELECT * FROM student
+		ORDER BY grade ASC;		{for ascending "ASC" is used}
+
+		2.DESCENDING 
+		SELECT * FROM student
+		ORDER BY grade DESC;		{for descending "DESC" is used}
+
+	AGGREGATE FUNCTION
+	-Aggregate functions perform a calculation on a set of values, and return a single value
+
+	1.COUNT()
+	-It counts the number of data and tells us
+	syntax:-
+		SELECT COUNT(id) FROM student;
+	
+	2.MAX()
+	-It gives the maximum value from the data
+	syntax:-
+		SELECT MAX(grade) FROM student;
+
+	3.MIN()
+	-It gives the minimum value from the data
+	syntax:-
+		SELECT MIN(grade) FROM student;
+
+	4.SUM()
+	-It gives the total from the data
+	syntax:-
+		SELECT SUM(marks) FROM student; 
+
+	5.AVG()
+	-It gives the average from the data
+	syntax:-
+		SELECT AVG(marks) FROM student; 
+
+
+	GROUP BY CLAUSE
+	-Group rows that have the same values into summary rows.
+	-It collects data from multiple records and groups the result by one or more column
+	-Generally we use group by with some aggregation function
+
+	EXAMPLE:- Count number of students in each city
+	syntax:-
+		SELECT city, COUNT(id) FROM student		{Here after SELECT we know if we want the enter tables data then we use "*" or else write the name of the column but in  		GROUP BY city;					GROUP DATA we also required to enter the function too and make sure to add the column name after writing the GROUP BY}
+	
+
+	PRACTICE QUESTION
+	-Write the query to find avg marks in each city in ascending order
+
+	-->
+		SELECT city, AVG(marks) FROM student
+		GROUP BY city, marks
+		ORDER BY AVG(marks);
+
+	HAVING CLAUSE
+	-Similar to where i.e. applies some condition on rows
+	-Used when we want to apply any condition after grouping
+
+		example:- Count number of students in each city where max marks cross 90
+		-->     SELECT city, count(id) FROM student
+			GROUP BY city
+			HAVING MAX(marks) > 90;			{difference btw where and having is where apply conditions in rows where 								as having apply conditions in group}
+
+	GENERAL ORDER FOR APPLYING DIFFERENT CLAUSES
+		
+		SELECT column(s)
+		FROM table_name
+		WHERE condition
+		GROUP BY column(s)
+		HAVING condition
+		ORDER BY column(s) ASC;
+		{This is sequence for writing the queries}
+
+
+
+	
+UPDATE 
+-Used to update existing rows
+syntax:-
+	UPDATE student
+	SET name = "Nandkishor"
+	WHERE name = "anil";
+		
+	{NOTE:- If the software is showing "Error Code:- 1175" then it means the software's safe mode is on it protects the data from making changes.
+		IF want to turn it off then 
+		syntax:- 
+			SET SQL_SAFE_UPDATES = 0;			- writing 0 will turn the safe mode off and 1 turn turn it on}
+
+
+
+
+DELETE 
+-Used to delete existing rows
+syntax:-
+	DELETE FROM student
+	WHERE grade = "C";		{NOTE:- It is a very crucial command as once the delete command is being used then SQL deletes the data and cannot be restored}
+
+
+
+
+CASCADING FOR FOREIGN KEY
+-It is used as if you make any change in one table then on the second table the changes will automatically be done
+syntax:-
+	create table student(
+	id INT PRIMARY KEY,
+	courseID INT,
+	FOREIGN KEY(courseID) REFRENCES course(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+	);
+		
+
+	TO UPADATE ANYTHING
+	syntax:-
+		UPDATE student
+		SET id = 1
+		WHERE id = 3;	
+
+
+ALTER 
+-To change the schema
+
+	1. ADD COLUMN
+	syntax:-
+		ALTER TABLE table_name
+		ADD COLUMN column_nam datatype constraint;
+
+	2. DROP COLUMN
+	syntax:-
+		ALTER TABLE table_name
+		DROP COLUMN column_name;
+
+	3. RENAME TABLE
+	syntax:-
+		ALTER TABLE table_name
+		RENAME TO new_table_name;
+
+	4. CHANGE
+	syntax:- 
+		ALTER TABLE table_name
+		CHANGE COLUMN old_name new_name new_datatype new_constraint;
+	
+	5. Modify
+	syntax:-
+		ALTER TABLE table_name
+		MODIFY col_name new_datatype new_constraint;
+	
+
+
+TRUNCATE
+- To delete table's data		{The difference between the drop and truncate is drop delete's the entire table where as truncate only delete's the data inside the table. You can syntax:-					 still use the table}
+	TRUNCATE TABLE table_name;
+
+
+
+
+
+JOINS
+-Join is used to combine from two or more tables, based on a related column between them, but to join different tables there should be a common columns or rows in each table
+	
+
+	TYPES OF JOINS
+
+	1.INNER JOIN
+	-Returns records that has matching values in both tables
+
+	EXAMPLE:-
+		Table_1 has id as 101, 102, 103, 104
+		Table_2 has id as 103, 105, 106, 107
+		{The common is 103 in both the tables}
+	syntax:-
+		SELECT *
+		FROM tableA
+		INNER JOIN tableB
+		ON tableA.col_name = tableB.col_name;
+		
+
+	2. OUTER JOIN
+	
+
+		1.LEFT JOIN
+		-Returns all records from the left table, and the matched records from the right table		{Whichever data we want that it should come entirely then that table_name 														should come first}
+		EXAMPLE:-
+			Table 1 has id as 101, 102, 103
+			Table 2 has id as 102, 105, 103, 107
+			{LEFT JOIN will show table_1's entire data and the data which is common in table_2}
+		syntax:-
+			SELECT *
+			FROM tableA
+			LEFT JOIN tableB
+			ON tableA.col_name = tableB.col_name;
+
+
+		2. RIGHT JOIN
+		-Returns all records from the right table, and the matched records from the left table	
+
+		EXAMPLE:-
+			Table 1 has id as 101, 102, 103
+			Table 2 has id as 102, 105, 103, 107
+			{RIGHT JOIN will show table_2's entire data and the data which is common in table_1}
+		syntax:-
+			SELECT *
+			FROM tableA
+			RIGHT JOIN tableB
+			ON tableA.col_name = tableB.col_name;
+
+
+		3. FULL JOIN
+		-Returns all records when there is a match in either left or right table
+		
+
+		EXAMPLE:-
+			Table 1 has id as 101, 102, 103
+			Table 2 has id as 102, 105, 103, 107
+			{FULL JOIN will show table_1's entire data as well as table_2's entire data}
+		syntax:-
+			SELECT *
+			FROM tableA
+			LEFT JOIN tableB
+			ON tableA.col_name = tableB.col_name;
+			UNION								{It is used to combine the result-set of two or more SELECT statements but it removes duplicates so 
+			SELECT *							we get only the unique values}
+			FROM tableA
+			RIGHT JOIN tableB
+			ON tableA.col_name = tableB.col_name;
+
+
+
+		4. LEFT EXCLUSIVE JOIN
+		-Imagine we want the data which is not not common or the data which is unique in table_1 but not available in table_2
+		
+
+		EXAMPLE:-
+			Table 1 has id as 101, 102, 103
+			Table 2 has id as 102, 105, 103, 107
+			{LEFT EXCLUSIVE JOIN will only show the data from table_1 which is not available in table_2}
+		syntax:-
+			SELECT *
+			FROM tableA
+			LEFT JOIN tableB
+			ON tableA.col_name = tableB.col_name
+			WHERE tableB.col_name IS NULL;
+
+		5. RIGHT EXCLUSIVE JOIN
+		-Imagine we want the data which is not not common or the data which is unique in table_2 but not available in table_1
+		
+
+		EXAMPLE:-
+			Table 1 has id as 101, 102, 103
+			Table 2 has id as 102, 105, 103, 107
+			{RIGHT EXCLUSIVE JOIN will only show the data from table_2 which is not available in table_1}
+		syntax:-
+			SELECT *
+			FROM tableA
+			RIGHT JOIN tableB
+			ON tableA.col_name = tableB.col_name
+			WHERE tableA.col_name IS NULL;
+
+
+
+
+
+
+SQL SUB QUERIES
+-A Subquery or inner query as a nested query is a query within another SQL query
+-It involves 2 select statements
+
+EXAMPLE:-
+	1.Find the average salary
+	2.Find the names of the employees whose salary is greater then the average
+	-->		TRADITIONAL METHOD
+	   STEP 1:-
+		SELECT AVG(salary) FROM employees;
+	   STEP 2:-
+		SELECT first_name, last_name, salary 
+		FROM employees
+		WHERE salary > 69000;
+
+	{Traditionally we used to find solution in this way but in SQL SUB QUERIES it makes it a bit more smaller}
+
+
+			SQL SUB QUERIES METHOD
+	syntax:-
+		SELECT first_name, last_name, salary 
+		FROM employees
+		WHERE salary > (SELECT AVG(salary) FROM employees);
+	{If you look carefully the difference is not its just what we were doing in step 1 we mentioned it inside the () }
+
+
+
+
+
+MySQL VIEWS
+-A view is a virtual based on the result-set of an SQL statement
+syntax:-
+	CREATE VIEW view_name AS
+	SELECT column_name1, column_name2, column_name3 FROM table_name;
+
+	SELECT * FROM view_name;
+
+	DROP VIEW view_name;						{It is used to drop view}
